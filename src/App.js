@@ -1,12 +1,11 @@
+
 import React, { Component } from 'react';
 import './App.css';
-import MapContainer from './MapContainer.js'
+import MapContainer from './MapContainer';
 
 class App extends Component {
   state = {
-    locations: [
-      {uid: 1, location: {lat: 40.7413549, lng: -73.9980244}}
-    ]
+    locations: []
   }
 
 
