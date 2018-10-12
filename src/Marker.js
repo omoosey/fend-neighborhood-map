@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { Marker } from "react-google-maps";
 
-export default class DoctorMarker extends Component {
+class LocationsMarker extends Component {
+
+
 	render() {
-		console.log(this.props.location)
 		return(
 			<Marker
 				position={this.props.location}
-			>
-			</Marker>
+				visible={this.props.visible}
+			/>
 		);
 	}
 }
+
+export default LocationsMarker

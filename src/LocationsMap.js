@@ -1,11 +1,12 @@
 import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
-import Marker from "./Marker";
+import LocationsMarker from "./Marker";
 
 const LocationsMap = withScriptjs(withGoogleMap((props) => {
-	const markers = props.locations.map( location => <Marker
+	const markers = props.locations.map( location => <LocationsMarker
 		key={location.uid}
 		location={location.location}
+		visible={location.visible}
 	/>);
 
 	return (
