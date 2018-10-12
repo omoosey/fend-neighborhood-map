@@ -16,10 +16,10 @@ class App extends Component {
 
   hideLocation = (location) => {
     var locations = this.state.locations;
-    locations[location.uid].visible = false;
+    locations[location.uid].visible ? (locations[location.uid].visible = false) : (locations[location.uid].visible = true);
     this.setState({ locations })
   }
-  
+
 
   render() {
     return (
