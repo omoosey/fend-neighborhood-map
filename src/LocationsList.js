@@ -12,7 +12,7 @@ class LocationsList extends Component {
 		this.setState({
 			query: query.trim(),
 			searchResults
-		}, this.props.onCompareList(this.state.searchResults))
+		})
 	}
 
 	clearQuery = () => {

@@ -19,19 +19,6 @@ class App extends Component {
     this.setState({ locations })
   }
 
-  compareList = (search) => {
-    search.forEach((result) => {
-      var locations = this.state.locations;
-      locations.forEach((location) => {
-        if (location !== result) {
-          location.visible = false;
-        } else {
-          location.visible = true;
-        }
-        this.setState({ locations })
-      })
-    })
-  }
 
   render() {
     return (
