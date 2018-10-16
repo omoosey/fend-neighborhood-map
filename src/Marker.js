@@ -3,7 +3,6 @@ import { Marker } from "react-google-maps";
 
 class LocationsMarker extends Component {
 
-
 	render() {
 		return(
 			<Marker

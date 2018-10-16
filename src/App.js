@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import MapContainer from './MapContainer.js'
 import LocationsList from './LocationsList.js'
 
 class App extends Component {
@@ -20,12 +19,24 @@ class App extends Component {
     this.setState({ locations })
   }
 
+  compareList = (search) => {
+    search.forEach((result) => {
+      var locations = this.state.locations;
+      locations.forEach((location) => {
+        if (location !== result) {
+          location.visible = false;
+        } else {
+          location.visible = true;
+        }
+        this.setState({ locations })
+      })
+    })
+  }
 
   render() {
     return (
       <div className="App">
-        <LocationsList locations={this.state.locations} onHideLocation={this.hideLocation}/>
-        <MapContainer locations={this.state.locations}/>
+        <LocationsList locations={this.state.locations} onHideLocation={this.hideLocation} onCompareList={this.compareList}/>
       </div>
     );
   }
