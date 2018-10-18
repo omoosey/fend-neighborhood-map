@@ -42,14 +42,18 @@ class LocationsList extends Component {
 		// searchResults.sort(sortBy('name'));
 
 		return(
-			<div className="list-wrapper">
-				<input type="test" placeholder='Filter Locations' value={this.state.query} onChange={(event) => this.updateQuery(event.target.value, searchResults)}/>
-				<ul>
-					{searchResults.map((location) => {
-						return (<li key={location.uid} onClick={this.handleClick.bind(this, location)}>{location.name}</li>)
-					})}
-				</ul>
-				<MapContainer locations={searchResults}/>
+			<div className="app-wrapper">
+				<div className="list-wrapper">
+					<input type="test" placeholder='Filter Locations' value={this.state.query} onChange={(event) => this.updateQuery(event.target.value, searchResults)}/>
+					<ul>
+						{searchResults.map((location) => {
+							return (<li key={location.uid} onClick={this.handleClick.bind(this, location)}>{location.name}</li>)
+						})}
+					</ul>
+				</div>
+				<div className="map">
+					<MapContainer locations={searchResults}/>
+				</div>
 			</div>
 
 		)

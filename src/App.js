@@ -19,6 +19,18 @@ class App extends Component {
     this.setState({ locations })
   }
 
+  componentDidMount = () => {
+    fetch('https://api.foursquare.com/v2/venues/explore?client_id=O0SATKPGPFMI4WVJEGPVF5RNTLEEFOOYJURWC4FMGJBOYQIH&client_secret=ZTKQXLN551FBBHXA442B5HXV5RB1KYRTSGOHZCNKQGH1VLJE&v=20180323&ll=40.751258,-73.992813&limit=10&query=pizza')
+    .then(res => res.json())
+    .then((data) => {
+      let id = 5;
+      data.response.groups[0].items.forEach((place) => {
+        console.log("id: " + id + " " + place.venue.location.lat + " " + place.venue.location.lng);
+        id++;
+      })
+    })
+    .catch(error => console.log(error));
+  }
 
   render() {
     return (
