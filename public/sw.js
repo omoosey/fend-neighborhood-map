@@ -1,4 +1,4 @@
-let staticCacheName = 'neighborhood-map-static-v7';
+let staticCacheName = 'neighborhood-map-static-v8';
 
 //add items to cache
 self.addEventListener('install', event => {
@@ -6,7 +6,8 @@ self.addEventListener('install', event => {
 		caches.open(staticCacheName).then(cache => {
 			return cache.addAll([
 				'/',
-				'/index.html'
+				'/index.html',
+				'/icons/if_menu-alt_134216.svg'
 			]);
 		})
 

@@ -43,10 +43,9 @@ class LocationsList extends Component {
 
 		return(
 			<div className="app-wrapper">
-				<div className="list-wrapper">
+				<div id="list-wrapper">
 					<input type="test" placeholder='Filter Locations' value={this.state.query} onChange={(event) => this.updateQuery(event.target.value, searchResults)}/>
 					<ul>
-
 						{searchResults.map((location) => {
 							return (<div className="location-info">
 										<input onChange={this.handleClick.bind(this, location)} type="checkbox" 
@@ -55,11 +54,9 @@ class LocationsList extends Component {
 				        				<div className="location-address">{location.address[0]} <br/> {location.address[1]} <br/> {location.address[2]}</div>
 			        				</div>)
 						})}
-
-						
 					</ul>
 				</div>
-				<div className="map">
+				<div id="map">
 					<MapContainer locations={searchResults}/>
 				</div>
 			</div>

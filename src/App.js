@@ -34,12 +34,26 @@ class App extends Component {
     .catch(error => console.log(error));
   }
 
+  toggleMenu = () => {
+    const menu = document.getElementById('list-wrapper');
+    const map = document.getElementById('map')
+    if(menu.style.display === "none") {
+      menu.style.display = "block";
+      map.style.width = "75%"
+    } else {
+      menu.style.display = "none";
+      map.style.width = "100%"
+    }
+  }
+
+
   render() {
 
     return (
 
       <div className="App">
         <div className="header">
+          <div className="hamburger" onClick={this.toggleMenu}></div>
           <h1>Pizza Near Penn Station</h1>
         </div>
         <LocationsList locations={this.state.locations} onHideLocation={this.hideLocation}/>
