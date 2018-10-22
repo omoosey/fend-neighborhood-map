@@ -48,10 +48,11 @@ class LocationsList extends Component {
 					<ul>
 
 						{searchResults.map((location) => {
-							return (<div>
+							return (<div className="location-info">
 										<input onChange={this.handleClick.bind(this, location)} type="checkbox" 
 											key={location.uid} value={location.name} checked={location.checked} />
 				        				<label htmlFor={location.name}>{location.name}</label>
+				        				<div className="location-address">{location.address[0]} <br/> {location.address[1]} <br/> {location.address[2]}</div>
 			        				</div>)
 						})}
 

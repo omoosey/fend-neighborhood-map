@@ -4,8 +4,7 @@ import LocationsList from './LocationsList.js'
 
 class App extends Component {
   state = {
-    locations: [],
-    // checkValue: true
+    locations: []
   }
 
   hideLocation = (location, event) => {
@@ -27,7 +26,7 @@ class App extends Component {
       let id = 0;
       var locations = [];
       data.response.groups[0].items.forEach((place) => {
-        locations.push({uid: id, location: { lat: place.venue.location.lat, lng: place.venue.location.lng }, name: place.venue.name, visible: true, checked: true })
+        locations.push({uid: id, location: { lat: place.venue.location.lat, lng: place.venue.location.lng }, address: place.venue.location.formattedAddress, name: place.venue.name, visible: true, checked: true })
         this.setState({ locations })
         id++;
       })
@@ -40,7 +39,7 @@ class App extends Component {
     return (
 
       <div className="App">
-        <LocationsList locations={this.state.locations} checked={this.state.checkValue} onHideLocation={this.hideLocation} onCompareList={this.compareList}/>
+        <LocationsList locations={this.state.locations} onHideLocation={this.hideLocation}/>
       </div>
     );
   }
