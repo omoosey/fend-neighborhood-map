@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import sortBy from 'sort-by'
+// import sortBy from 'sort-by'
 import MapContainer from './MapContainer.js'
 
 class LocationsList extends Component {
@@ -19,6 +19,10 @@ class LocationsList extends Component {
 		this.setState({
 			query: ''
 		})
+	}
+
+	animateMarker = (event) => {
+		console.log(event.target)
 	}
 
 	handleClick = (location, event) => {
@@ -43,22 +47,25 @@ class LocationsList extends Component {
 
 		return(
 			<div className="app-wrapper">
+				<div id="map">
+					<MapContainer locations={searchResults}/>
+				</div>
 				<div id="list-wrapper">
-					<input type="test" placeholder='Filter Locations' value={this.state.query} onChange={(event) => this.updateQuery(event.target.value, searchResults)}/>
+					<input id="filter-box" type="test" placeholder='Filter Locations' value={this.state.query} onChange={(event) => this.updateQuery(event.target.value, searchResults)}/>
 					<ul>
 						{searchResults.map((location) => {
-							return (<div className="location-info">
-										<input onChange={this.handleClick.bind(this, location)} type="checkbox" 
-											key={location.uid} value={location.name} checked={location.checked} />
-				        				<label htmlFor={location.name}>{location.name}</label>
+							return (<div key={location.uid} className="location-info">
+										<div id="location-name">
+											<input className="checkbox" onChange={this.handleClick.bind(this, location)} type="checkbox" 
+												value={location.name} checked={location.checked} />
+					        				<label key={location.uid} value={location.uid} onClick={this.animateMarker} htmlFor={location.name}>{location.name}</label>
+				        				</div>
 				        				<div className="location-address">{location.address[0]} <br/> {location.address[1]} <br/> {location.address[2]}</div>
 			        				</div>)
 						})}
 					</ul>
 				</div>
-				<div id="map">
-					<MapContainer locations={searchResults}/>
-				</div>
+				
 			</div>
 
 		)

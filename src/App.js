@@ -35,14 +35,20 @@ class App extends Component {
   }
 
   toggleMenu = () => {
+    const mediaWidth = window.matchMedia("(max-width: 768px)")
     const menu = document.getElementById('list-wrapper');
     const map = document.getElementById('map')
+
     if(menu.style.display === "none") {
       menu.style.display = "block";
-      map.style.width = "75%"
+      if (!mediaWidth.matches) {
+        map.style.width = "75%"
+      }
     } else {
       menu.style.display = "none";
-      map.style.width = "100%"
+      if (!mediaWidth.matches) {
+        map.style.width = "100%";
+      }
     }
   }
 
