@@ -31,10 +31,24 @@
   }
 }
 
+.App {
+  height: 95vh;
+}
+
+.header {
+  background-color: black;
+  color: white;
+  height: 5vh;
+}
+
+.header h1 {
+    margin: 0px;
+}
+
 .app-wrapper {
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .list-wrapper {

@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    fetch('https://api.foursquare.com/v2/venues/explore?client_id=O0SATKPGPFMI4WVJEGPVF5RNTLEEFOOYJURWC4FMGJBOYQIH&client_secret=ZTKQXLN551FBBHXA442B5HXV5RB1KYRTSGOHZCNKQGH1VLJE&v=20180323&ll=40.751258,-73.992813&limit=10&query=pizza')
+    fetch('https://api.foursquare.com/v2/venues/explore?client_id=O0SATKPGPFMI4WVJEGPVF5RNTLEEFOOYJURWC4FMGJBOYQIH&client_secret=ZTKQXLN551FBBHXA442B5HXV5RB1KYRTSGOHZCNKQGH1VLJE&v=20180323&ll=40.751258,-73.992813&limit=12&query=pizza')
     .then(res => res.json())
     .then((data) => {
       let id = 0;
@@ -39,6 +39,9 @@ class App extends Component {
     return (
 
       <div className="App">
+        <div className="header">
+          <h1>Pizza Near Penn Station</h1>
+        </div>
         <LocationsList locations={this.state.locations} onHideLocation={this.hideLocation}/>
       </div>
     );
