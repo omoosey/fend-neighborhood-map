@@ -5,12 +5,18 @@ import LocationsList from './LocationsList.js'
 class App extends Component {
   state = {
     locations: [],
-    checked: true
+    // checkValue: true
   }
 
-  hideLocation = (location) => {
-    var locations = this.state.locations;
-    locations[location.uid].visible ? (locations[location.uid].visible = false) : (locations[location.uid].visible = true);
+  hideLocation = (location, event) => {
+    const locations = this.state.locations;
+    if (locations[location.uid].visible) {
+      locations[location.uid].visible = false;
+      locations[location.uid].checked = false;
+    } else {
+      locations[location.uid].visible = true;
+      locations[location.uid].checked = true;
+    }
     this.setState({ locations })
   }
 
@@ -21,7 +27,7 @@ class App extends Component {
       let id = 0;
       var locations = [];
       data.response.groups[0].items.forEach((place) => {
-        locations.push({uid: id, location: { lat: place.venue.location.lat, lng: place.venue.location.lng }, name: place.venue.name })
+        locations.push({uid: id, location: { lat: place.venue.location.lat, lng: place.venue.location.lng }, name: place.venue.name, visible: true, checked: true })
         this.setState({ locations })
         id++;
       })
@@ -34,7 +40,7 @@ class App extends Component {
     return (
 
       <div className="App">
-        <LocationsList locations={this.state.locations} checked={this.state.checked} onHideLocation={this.hideLocation} onCompareList={this.compareList}/>
+        <LocationsList locations={this.state.locations} checked={this.state.checkValue} onHideLocation={this.hideLocation} onCompareList={this.compareList}/>
       </div>
     );
   }

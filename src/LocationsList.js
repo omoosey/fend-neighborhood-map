@@ -22,7 +22,7 @@ class LocationsList extends Component {
 	}
 
 	handleClick = (location, event) => {
-		this.props.onHideLocation(location)
+		this.props.onHideLocation(location, event)
 	}
 
 
@@ -50,7 +50,7 @@ class LocationsList extends Component {
 						{searchResults.map((location) => {
 							return (<div>
 										<input onChange={this.handleClick.bind(this, location)} type="checkbox" 
-											key={location.uid} name="feature" value={location.name} defaultChecked />
+											key={location.uid} value={location.name} checked={location.checked} />
 				        				<label htmlFor={location.name}>{location.name}</label>
 			        				</div>)
 						})}
