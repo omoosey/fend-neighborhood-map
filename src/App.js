@@ -26,10 +26,12 @@ class App extends Component {
       let id = 0;
       var locations = [];
       data.response.groups[0].items.forEach((place) => {
-        locations.push({uid: id, location: { lat: place.venue.location.lat, lng: place.venue.location.lng }, address: place.venue.location.formattedAddress, name: place.venue.name, visible: true, checked: true })
-        this.setState({ locations })
+        locations.push({uid: id, location: { lat: place.venue.location.lat, lng: place.venue.location.lng },
+        	address: place.venue.location.formattedAddress, name: place.venue.name, visible: true, checked: true, animation: 2 })
+        
         id++;
       })
+      this.setState({ locations })
     })
     .catch(error => console.log(error));
   }
@@ -52,6 +54,17 @@ class App extends Component {
     }
   }
 
+	animateMarker = (location) => {
+		const locations = this.state.locations;
+		
+		locations[location.uid].animation = 1;
+		this.setState({ locations });
+
+		setTimeout(() => {
+			locations[location.uid].animation = null;
+			this.setState({ locations });
+		}, 2000)
+	}
 
   render() {
 
@@ -62,7 +75,7 @@ class App extends Component {
           <div className="hamburger" onClick={this.toggleMenu}></div>
           <h1>Pizza Near Penn Station</h1>
         </div>
-        <LocationsList locations={this.state.locations} onHideLocation={this.hideLocation}/>
+        <LocationsList locations={this.state.locations} onHideLocation={this.hideLocation} onAnimateMarker={this.animateMarker}/>
       </div>
     );
   }

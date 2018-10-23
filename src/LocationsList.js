@@ -21,8 +21,8 @@ class LocationsList extends Component {
 		})
 	}
 
-	animateMarker = (event) => {
-		console.log(event.target)
+	handleAnimation = (location, event) => {
+		this.props.onAnimateMarker(location);
 	}
 
 	handleClick = (location, event) => {
@@ -58,7 +58,7 @@ class LocationsList extends Component {
 										<div id="location-name">
 											<input className="checkbox" onChange={this.handleClick.bind(this, location)} type="checkbox" 
 												value={location.name} checked={location.checked} />
-					        				<label key={location.uid} value={location.uid} onClick={this.animateMarker} htmlFor={location.name}>{location.name}</label>
+					        				<label key={location.uid} value={location.uid} onClick={this.handleAnimation.bind(this, location)} htmlFor={location.name}>{location.name}</label>
 				        				</div>
 				        				<div className="location-address">{location.address[0]} <br/> {location.address[1]} <br/> {location.address[2]}</div>
 			        				</div>)
