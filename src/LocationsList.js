@@ -48,7 +48,7 @@ class LocationsList extends Component {
 		return(
 			<div className="app-wrapper">
 				<div id="map">
-					<MapContainer locations={searchResults}/>
+					<MapContainer locations={searchResults} onInfoToggle={this.props.onInfoToggle}/>
 				</div>
 				<div id="list-wrapper">
 					<input id="filter-box" type="test" placeholder='Filter Locations' value={this.state.query} onChange={(event) => this.updateQuery(event.target.value, searchResults)}/>

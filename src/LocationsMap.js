@@ -6,11 +6,13 @@ const LocationsMap = withScriptjs(withGoogleMap((props) => {
 
 	const markers = props.locations.map( location => <LocationsMarker
 		key={location.uid}
-		location={location.location}
+		location={location}
+		position={location.location}
 		address={location.address}
 		visible={location.visible}
 		animation={location.animation}
-
+		infoOpen={location.infoOpen}
+		onInfoToggle={props.onInfoToggle}		
 	/>);
 
 	return (

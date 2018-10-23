@@ -10,6 +10,7 @@ export default class MapContainer extends Component {
 				loadingElement={<div style={{height: `100%`, width: `100%`, position: `relative`}}/>}
 				containerElement={<div style={{height: `100%`, width: `100%`}}/>}
 				mapElement={<div style={{height: `100%`}}/>}
+				onInfoToggle={this.props.onInfoToggle}
 			/>
 		);
 	}
