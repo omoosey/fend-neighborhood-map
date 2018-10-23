@@ -7,9 +7,10 @@ const LocationsMap = withScriptjs(withGoogleMap((props) => {
 	const markers = props.locations.map( location => <LocationsMarker
 		key={location.uid}
 		location={location.location}
+		address={location.address}
 		visible={location.visible}
-		locID={location.uid}
 		animation={location.animation}
+
 	/>);
 
 	return (
