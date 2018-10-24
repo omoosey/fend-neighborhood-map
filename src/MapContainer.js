@@ -11,6 +11,7 @@ export default class MapContainer extends Component {
 				containerElement={<div style={{height: `100%`, width: `100%`}}/>}
 				mapElement={<div style={{height: `100%`}}/>}
 				onInfoToggle={this.props.onInfoToggle}
+				
 			/>
 		);
 	}

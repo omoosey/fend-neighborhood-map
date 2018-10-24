@@ -1,4 +1,4 @@
-let staticCacheName = 'neighborhood-map-static-v8';
+let staticCacheName = 'neighborhood-map-static-v9';
 
 //add items to cache
 self.addEventListener('install', event => {

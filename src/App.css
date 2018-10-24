@@ -31,6 +31,10 @@
   }
 }
 
+li {
+  list-style-type: none;
+}
+
 .App {
   height: 95vh;
 }

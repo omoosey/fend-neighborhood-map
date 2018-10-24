@@ -7,17 +7,7 @@ class App extends Component {
 		locations: []
 	}
 
-	hideLocation = (location, event) => {
-		const locations = this.state.locations;
-		if (locations[location.uid].visible) {
-		  locations[location.uid].visible = false;
-		  locations[location.uid].checked = false;
-		} else {
-		  locations[location.uid].visible = true;
-		  locations[location.uid].checked = true;
-		}
-		this.setState({ locations })
-	}
+	// Grab a list of 12 locations and their details
 
 	componentWillMount = () => {
 		fetch('https://api.foursquare.com/v2/venues/explore?client_id=O0SATKPGPFMI4WVJEGPVF5RNTLEEFOOYJURWC4FMGJBOYQIH&client_secret=ZTKQXLN551FBBHXA442B5HXV5RB1KYRTSGOHZCNKQGH1VLJE&v=20180323&ll=40.751258,-73.992813&limit=12&query=pizza')
@@ -35,6 +25,23 @@ class App extends Component {
 		})
 		.catch(error => console.log(error));
 	}
+
+	// Toggles the visible and checked property of the specified location. 
+	// This will hide the marker when the checkbox is unchecked.
+
+	hideLocation = (location, event) => {
+		const locations = this.state.locations;
+		if (locations[location.uid].visible) {
+		  locations[location.uid].visible = false;
+		  locations[location.uid].checked = false;
+		} else {
+		  locations[location.uid].visible = true;
+		  locations[location.uid].checked = true;
+		}
+		this.setState({ locations })
+	}
+
+	// Toggles the sidebar and expands the map, also checks the window size so it doesn't incorrectly change the map width
 
 	toggleMenu = () => {
 		const mediaWidth = window.matchMedia("(max-width: 768px)")
@@ -54,6 +61,8 @@ class App extends Component {
 		}
 	}
 
+	// toggles infoOpen property which will cause the infoWindow to display when true
+
 	toggleInfoWindow = (location) => {
 		let locations = this.state.locations;
 		if(locations[location.uid].infoOpen) {
@@ -64,6 +73,8 @@ class App extends Component {
 			this.setState({ locations })
 		}
 	}
+
+	// Function to animate marker on map, changes animation and infoOpen, animation times out after 2s
 
 	animateMarker = (location) => {
 		const locations = this.state.locations;
@@ -83,9 +94,9 @@ class App extends Component {
     return (
 
       <div className="App">
-        <div className="header">
-          <div className="hamburger" onClick={this.toggleMenu}></div>
-          <h1>Pizza Near Penn Station</h1>
+        <div className="header" role="header" tabIndex="0">
+          <div className="hamburger" onClick={this.toggleMenu} tabIndex="0" aria-label="toggle-menu" role="button"></div>
+          <h1 tabIndex="0">Pizza Near Penn Station</h1>
         </div>
         <LocationsList locations={this.state.locations} onHideLocation={this.hideLocation}
         	onAnimateMarker={this.animateMarker} onInfoToggle={this.toggleInfoWindow}/>

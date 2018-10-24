@@ -14,6 +14,7 @@ class LocationsMarker extends Component {
 				visible={this.props.visible}
 				onClick={this.handleClick.bind(this, this.props.location)}
 				animation={this.props.animation}
+				tabIndex="0"
 			>
 				{this.props.infoOpen && <InfoWindow onCloseClick={this.handleClick.bind(this, this.props.location)}>
 					<div>{this.props.address[0]} <br/> {this.props.address[1]} <br/> {this.props.address[2]}</div>

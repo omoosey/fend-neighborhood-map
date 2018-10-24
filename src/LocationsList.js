@@ -8,16 +8,12 @@ class LocationsList extends Component {
 		searchResults: []
 	}
 
+	// Updates the query and searchResults array
+
 	updateQuery = (query, searchResults) => {
 		this.setState({
 			query: query.trim(),
 			searchResults
-		})
-	}
-
-	clearQuery = () => {
-		this.setState({
-			query: ''
 		})
 	}
 
@@ -34,6 +30,8 @@ class LocationsList extends Component {
 	render() {
 		let searchResults = this.state.searchResults;
 
+		// On load, if there is a query, set searchResults to the locations that match. If no query, set searchResults to all locations
+
 		if (this.state.query) {
 			const searchTerm = new RegExp(this.state.query);
 			searchResults = this.props.locations.filter((location) => searchTerm.test(location.name))
@@ -41,27 +39,24 @@ class LocationsList extends Component {
 		} else {
 			searchResults = this.props.locations;
 		}
-		
-		// FIX: sortBy causing problem since searchResults order will then differ from locations
-		// searchResults.sort(sortBy('name'));
 
 		return(
 			<div className="app-wrapper">
-				<div id="map">
-					<MapContainer locations={searchResults} onInfoToggle={this.props.onInfoToggle}/>
+				<div id="map" aria-label="map">
+					<MapContainer aria-label="map" locations={searchResults} onInfoToggle={this.props.onInfoToggle}/>
 				</div>
 				<div id="list-wrapper">
-					<input id="filter-box" type="test" placeholder='Filter Locations' value={this.state.query} onChange={(event) => this.updateQuery(event.target.value, searchResults)}/>
-					<ul>
+					<input tabIndex="0" aria-placeholder="Filter locations" role="textbox" id="filter-box" type="test" placeholder='Filter Locations' value={this.state.query} onChange={(event) => this.updateQuery(event.target.value, searchResults)}/>
+					<ul tabIndex="0" role="list" aria-label="list">
 						{searchResults.map((location) => {
-							return (<div key={location.uid} className="location-info">
+							return (<li><div key={location.uid} className="location-info">
 										<div id="location-name">
-											<input className="checkbox" onChange={this.handleClick.bind(this, location)} type="checkbox" 
+											<input role="listitem" aria-label={location.name} tabIndex="0" className="checkbox" onChange={this.handleClick.bind(this, location)} type="checkbox" 
 												value={location.name} checked={location.checked} />
 					        				<label key={location.uid} value={location.uid} onClick={this.handleAnimation.bind(this, location)} htmlFor={location.name}>{location.name}</label>
 				        				</div>
-				        				<div className="location-address">{location.address[0]} <br/> {location.address[1]} <br/> {location.address[2]}</div>
-			        				</div>)
+				        				<div tabIndex="0" aria-label={location.address} className="location-address">{location.address[0]} <br/> {location.address[1]} <br/> {location.address[2]}</div>
+			        				</div></li>)
 						})}
 					</ul>
 				</div>
