@@ -58,6 +58,7 @@ class LocationsList extends Component {
 				        				<div tabIndex="0" aria-label={location.address} className="location-address">{location.address[0]} <br/> {location.address[1]} <br/> {location.address[2]}</div>
 			        				</div></li>)
 						})}
+						
 					</ul>
 				</div>
 				
